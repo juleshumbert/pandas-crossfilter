@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+<title>pandas-crossfilter</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<div id="5db2753d-bad1-4e9d-b684-bd5d83ffa41b"></div>
+<script type="text/javascript">
+var element = $('#5db2753d-bad1-4e9d-b684-bd5d83ffa41b');
+require.config({
+    paths: {
+        'd3': 'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min',
+        'crossfilter': 'https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min',
+        'dc': 'https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0-beta.32/dc',
+    },
+    shim: {
+        'crossfilter': {
+            deps: [],
+            exports: 'crossfilter'
+        }
+    }
+});
+</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dc/1.7.5/dc.min.css" rel="stylesheet" type="text/css">'
+<script> 
+
+    require(['d3', 'crossfilter', 'dc'], function(d3, crossfilter, dc) {
+        var pluck = function(prop) {
+            return function(d) { return d[prop]; };
+        };
+        var pluck2 = function(prop1, prop2, prop3) {
+            return function(d) { return [+d[prop1], +d[prop2], +d[prop3]]; };
+        };
+        
+        var crossfilterData = [{"Ozone":41.0,"Solar.R":190.0,"Wind":7.4,"Temp":67,"Month":5,"Day":1,"date":1462060800000,"Date":1462060800000},{"Ozone":36.0,"Solar.R":118.0,"Wind":8.0,"Temp":72,"Month":5,"Day":2,"date":1462147200000,"Date":1462147200000},{"Ozone":12.0,"Solar.R":149.0,"Wind":12.6,"Temp":74,"Month":5,"Day":3,"date":1462233600000,"Date":1462233600000},{"Ozone":18.0,"Solar.R":313.0,"Wind":11.5,"Temp":62,"Month":5,"Day":4,"date":1462320000000,"Date":1462320000000},{"Ozone":null,"Solar.R":null,"Wind":14.3,"Temp":56,"Month":5,"Day":5,"date":1462406400000,"Date":1462406400000},{"Ozone":28.0,"Solar.R":null,"Wind":14.9,"Temp":66,"Month":5,"Day":6,"date":1462492800000,"Date":1462492800000},{"Ozone":23.0,"Solar.R":299.0,"Wind":8.6,"Temp":65,"Month":5,"Day":7,"date":1462579200000,"Date":1462579200000},{"Ozone":19.0,"Solar.R":99.0,"Wind":13.8,"Temp":59,"Month":5,"Day":8,"date":1462665600000,"Date":1462665600000},{"Ozone":8.0,"Solar.R":19.0,"Wind":20.1,"Temp":61,"Month":5,"Day":9,"date":1462752000000,"Date":1462752000000},{"Ozone":null,"Solar.R":194.0,"Wind":8.6,"Temp":69,"Month":5,"Day":10,"date":1462838400000,"Date":1462838400000},{"Ozone":7.0,"Solar.R":null,"Wind":6.9,"Temp":74,"Month":5,"Day":11,"date":1462924800000,"Date":1462924800000},{"Ozone":16.0,"Solar.R":256.0,"Wind":9.7,"Temp":69,"Month":5,"Day":12,"date":1463011200000,"Date":1463011200000},{"Ozone":11.0,"Solar.R":290.0,"Wind":9.2,"Temp":66,"Month":5,"Day":13,"date":1463097600000,"Date":1463097600000},{"Ozone":14.0,"Solar.R":274.0,"Wind":10.9,"Temp":68,"Month":5,"Day":14,"date":1463184000000,"Date":1463184000000},{"Ozone":18.0,"Solar.R":65.0,"Wind":13.2,"Temp":58,"Month":5,"Day":15,"date":1463270400000,"Date":1463270400000},{"Ozone":14.0,"Solar.R":334.0,"Wind":11.5,"Temp":64,"Month":5,"Day":16,"date":1463356800000,"Date":1463356800000},{"Ozone":34.0,"Solar.R":307.0,"Wind":12.0,"Temp":66,"Month":5,"Day":17,"date":1463443200000,"Date":1463443200000},{"Ozone":6.0,"Solar.R":78.0,"Wind":18.4,"Temp":57,"Month":5,"Day":18,"date":1463529600000,"Date":1463529600000},{"Ozone":30.0,"Solar.R":322.0,"Wind":11.5,"Temp":68,"Month":5,"Day":19,"date":1463616000000,"Date":1463616000000},{"Ozone":11.0,"Solar.R":44.0,"Wind":9.7,"Temp":62,"Month":5,"Day":20,"date":1463702400000,"Date":1463702400000},{"Ozone":1.0,"Solar.R":8.0,"Wind":9.7,"Temp":59,"Month":5,"Day":21,"date":1463788800000,"Date":1463788800000},{"Ozone":11.0,"Solar.R":320.0,"Wind":16.6,"Temp":73,"Month":5,"Day":22,"date":1463875200000,"Date":1463875200000},{"Ozone":4.0,"Solar.R":25.0,"Wind":9.7,"Temp":61,"Month":5,"Day":23,"date":1463961600000,"Date":1463961600000},{"Ozone":32.0,"Solar.R":92.0,"Wind":12.0,"Temp":61,"Month":5,"Day":24,"date":1464048000000,"Date":1464048000000},{"Ozone":null,"Solar.R":66.0,"Wind":16.6,"Temp":57,"Month":5,"Day":25,"date":1464134400000,"Date":1464134400000},{"Ozone":null,"Solar.R":266.0,"Wind":14.9,"Temp":58,"Month":5,"Day":26,"date":1464220800000,"Date":1464220800000},{"Ozone":null,"Solar.R":null,"Wind":8.0,"Temp":57,"Month":5,"Day":27,"date":1464307200000,"Date":1464307200000},{"Ozone":23.0,"Solar.R":13.0,"Wind":12.0,"Temp":67,"Month":5,"Day":28,"date":1464393600000,"Date":1464393600000},{"Ozone":45.0,"Solar.R":252.0,"Wind":14.9,"Temp":81,"Month":5,"Day":29,"date":1464480000000,"Date":1464480000000},{"Ozone":115.0,"Solar.R":223.0,"Wind":5.7,"Temp":79,"Month":5,"Day":30,"date":1464566400000,"Date":1464566400000},{"Ozone":37.0,"Solar.R":279.0,"Wind":7.4,"Temp":76,"Month":5,"Day":31,"date":1464652800000,"Date":1464652800000},{"Ozone":null,"Solar.R":286.0,"Wind":8.6,"Temp":78,"Month":6,"Day":1,"date":1464739200000,"Date":1464739200000},{"Ozone":null,"Solar.R":287.0,"Wind":9.7,"Temp":74,"Month":6,"Day":2,"date":1464825600000,"Date":1464825600000},{"Ozone":null,"Solar.R":242.0,"Wind":16.1,"Temp":67,"Month":6,"Day":3,"date":1464912000000,"Date":1464912000000},{"Ozone":null,"Solar.R":186.0,"Wind":9.2,"Temp":84,"Month":6,"Day":4,"date":1464998400000,"Date":1464998400000},{"Ozone":null,"Solar.R":220.0,"Wind":8.6,"Temp":85,"Month":6,"Day":5,"date":1465084800000,"Date":1465084800000},{"Ozone":null,"Solar.R":264.0,"Wind":14.3,"Temp":79,"Month":6,"Day":6,"date":1465171200000,"Date":1465171200000},{"Ozone":29.0,"Solar.R":127.0,"Wind":9.7,"Temp":82,"Month":6,"Day":7,"date":1465257600000,"Date":1465257600000},{"Ozone":null,"Solar.R":273.0,"Wind":6.9,"Temp":87,"Month":6,"Day":8,"date":1465344000000,"Date":1465344000000},{"Ozone":71.0,"Solar.R":291.0,"Wind":13.8,"Temp":90,"Month":6,"Day":9,"date":1465430400000,"Date":1465430400000},{"Ozone":39.0,"Solar.R":323.0,"Wind":11.5,"Temp":87,"Month":6,"Day":10,"date":1465516800000,"Date":1465516800000},{"Ozone":null,"Solar.R":259.0,"Wind":10.9,"Temp":93,"Month":6,"Day":11,"date":1465603200000,"Date":1465603200000},{"Ozone":null,"Solar.R":250.0,"Wind":9.2,"Temp":92,"Month":6,"Day":12,"date":1465689600000,"Date":1465689600000},{"Ozone":23.0,"Solar.R":148.0,"Wind":8.0,"Temp":82,"Month":6,"Day":13,"date":1465776000000,"Date":1465776000000},{"Ozone":null,"Solar.R":332.0,"Wind":13.8,"Temp":80,"Month":6,"Day":14,"date":1465862400000,"Date":1465862400000},{"Ozone":null,"Solar.R":322.0,"Wind":11.5,"Temp":79,"Month":6,"Day":15,"date":1465948800000,"Date":1465948800000},{"Ozone":21.0,"Solar.R":191.0,"Wind":14.9,"Temp":77,"Month":6,"Day":16,"date":1466035200000,"Date":1466035200000},{"Ozone":37.0,"Solar.R":284.0,"Wind":20.7,"Temp":72,"Month":6,"Day":17,"date":1466121600000,"Date":1466121600000},{"Ozone":20.0,"Solar.R":37.0,"Wind":9.2,"Temp":65,"Month":6,"Day":18,"date":1466208000000,"Date":1466208000000},{"Ozone":12.0,"Solar.R":120.0,"Wind":11.5,"Temp":73,"Month":6,"Day":19,"date":1466294400000,"Date":1466294400000},{"Ozone":13.0,"Solar.R":137.0,"Wind":10.3,"Temp":76,"Month":6,"Day":20,"date":1466380800000,"Date":1466380800000},{"Ozone":null,"Solar.R":150.0,"Wind":6.3,"Temp":77,"Month":6,"Day":21,"date":1466467200000,"Date":1466467200000},{"Ozone":null,"Solar.R":59.0,"Wind":1.7,"Temp":76,"Month":6,"Day":22,"date":1466553600000,"Date":1466553600000},{"Ozone":null,"Solar.R":91.0,"Wind":4.6,"Temp":76,"Month":6,"Day":23,"date":1466640000000,"Date":1466640000000},{"Ozone":null,"Solar.R":250.0,"Wind":6.3,"Temp":76,"Month":6,"Day":24,"date":1466726400000,"Date":1466726400000},{"Ozone":null,"Solar.R":135.0,"Wind":8.0,"Temp":75,"Month":6,"Day":25,"date":1466812800000,"Date":1466812800000},{"Ozone":null,"Solar.R":127.0,"Wind":8.0,"Temp":78,"Month":6,"Day":26,"date":1466899200000,"Date":1466899200000},{"Ozone":null,"Solar.R":47.0,"Wind":10.3,"Temp":73,"Month":6,"Day":27,"date":1466985600000,"Date":1466985600000},{"Ozone":null,"Solar.R":98.0,"Wind":11.5,"Temp":80,"Month":6,"Day":28,"date":1467072000000,"Date":1467072000000},{"Ozone":null,"Solar.R":31.0,"Wind":14.9,"Temp":77,"Month":6,"Day":29,"date":1467158400000,"Date":1467158400000},{"Ozone":null,"Solar.R":138.0,"Wind":8.0,"Temp":83,"Month":6,"Day":30,"date":1467244800000,"Date":1467244800000},{"Ozone":135.0,"Solar.R":269.0,"Wind":4.1,"Temp":84,"Month":7,"Day":1,"date":1467331200000,"Date":1467331200000},{"Ozone":49.0,"Solar.R":248.0,"Wind":9.2,"Temp":85,"Month":7,"Day":2,"date":1467417600000,"Date":1467417600000},{"Ozone":32.0,"Solar.R":236.0,"Wind":9.2,"Temp":81,"Month":7,"Day":3,"date":1467504000000,"Date":1467504000000},{"Ozone":null,"Solar.R":101.0,"Wind":10.9,"Temp":84,"Month":7,"Day":4,"date":1467590400000,"Date":1467590400000},{"Ozone":64.0,"Solar.R":175.0,"Wind":4.6,"Temp":83,"Month":7,"Day":5,"date":1467676800000,"Date":1467676800000},{"Ozone":40.0,"Solar.R":314.0,"Wind":10.9,"Temp":83,"Month":7,"Day":6,"date":1467763200000,"Date":1467763200000},{"Ozone":77.0,"Solar.R":276.0,"Wind":5.1,"Temp":88,"Month":7,"Day":7,"date":1467849600000,"Date":1467849600000},{"Ozone":97.0,"Solar.R":267.0,"Wind":6.3,"Temp":92,"Month":7,"Day":8,"date":1467936000000,"Date":1467936000000},{"Ozone":97.0,"Solar.R":272.0,"Wind":5.7,"Temp":92,"Month":7,"Day":9,"date":1468022400000,"Date":1468022400000},{"Ozone":85.0,"Solar.R":175.0,"Wind":7.4,"Temp":89,"Month":7,"Day":10,"date":1468108800000,"Date":1468108800000},{"Ozone":null,"Solar.R":139.0,"Wind":8.6,"Temp":82,"Month":7,"Day":11,"date":1468195200000,"Date":1468195200000},{"Ozone":10.0,"Solar.R":264.0,"Wind":14.3,"Temp":73,"Month":7,"Day":12,"date":1468281600000,"Date":1468281600000},{"Ozone":27.0,"Solar.R":175.0,"Wind":14.9,"Temp":81,"Month":7,"Day":13,"date":1468368000000,"Date":1468368000000},{"Ozone":null,"Solar.R":291.0,"Wind":14.9,"Temp":91,"Month":7,"Day":14,"date":1468454400000,"Date":1468454400000},{"Ozone":7.0,"Solar.R":48.0,"Wind":14.3,"Temp":80,"Month":7,"Day":15,"date":1468540800000,"Date":1468540800000},{"Ozone":48.0,"Solar.R":260.0,"Wind":6.9,"Temp":81,"Month":7,"Day":16,"date":1468627200000,"Date":1468627200000},{"Ozone":35.0,"Solar.R":274.0,"Wind":10.3,"Temp":82,"Month":7,"Day":17,"date":1468713600000,"Date":1468713600000},{"Ozone":61.0,"Solar.R":285.0,"Wind":6.3,"Temp":84,"Month":7,"Day":18,"date":1468800000000,"Date":1468800000000},{"Ozone":79.0,"Solar.R":187.0,"Wind":5.1,"Temp":87,"Month":7,"Day":19,"date":1468886400000,"Date":1468886400000},{"Ozone":63.0,"Solar.R":220.0,"Wind":11.5,"Temp":85,"Month":7,"Day":20,"date":1468972800000,"Date":1468972800000},{"Ozone":16.0,"Solar.R":7.0,"Wind":6.9,"Temp":74,"Month":7,"Day":21,"date":1469059200000,"Date":1469059200000},{"Ozone":null,"Solar.R":258.0,"Wind":9.7,"Temp":81,"Month":7,"Day":22,"date":1469145600000,"Date":1469145600000},{"Ozone":null,"Solar.R":295.0,"Wind":11.5,"Temp":82,"Month":7,"Day":23,"date":1469232000000,"Date":1469232000000},{"Ozone":80.0,"Solar.R":294.0,"Wind":8.6,"Temp":86,"Month":7,"Day":24,"date":1469318400000,"Date":1469318400000},{"Ozone":108.0,"Solar.R":223.0,"Wind":8.0,"Temp":85,"Month":7,"Day":25,"date":1469404800000,"Date":1469404800000},{"Ozone":20.0,"Solar.R":81.0,"Wind":8.6,"Temp":82,"Month":7,"Day":26,"date":1469491200000,"Date":1469491200000},{"Ozone":52.0,"Solar.R":82.0,"Wind":12.0,"Temp":86,"Month":7,"Day":27,"date":1469577600000,"Date":1469577600000},{"Ozone":82.0,"Solar.R":213.0,"Wind":7.4,"Temp":88,"Month":7,"Day":28,"date":1469664000000,"Date":1469664000000},{"Ozone":50.0,"Solar.R":275.0,"Wind":7.4,"Temp":86,"Month":7,"Day":29,"date":1469750400000,"Date":1469750400000},{"Ozone":64.0,"Solar.R":253.0,"Wind":7.4,"Temp":83,"Month":7,"Day":30,"date":1469836800000,"Date":1469836800000},{"Ozone":59.0,"Solar.R":254.0,"Wind":9.2,"Temp":81,"Month":7,"Day":31,"date":1469923200000,"Date":1469923200000},{"Ozone":39.0,"Solar.R":83.0,"Wind":6.9,"Temp":81,"Month":8,"Day":1,"date":1470009600000,"Date":1470009600000},{"Ozone":9.0,"Solar.R":24.0,"Wind":13.8,"Temp":81,"Month":8,"Day":2,"date":1470096000000,"Date":1470096000000},{"Ozone":16.0,"Solar.R":77.0,"Wind":7.4,"Temp":82,"Month":8,"Day":3,"date":1470182400000,"Date":1470182400000},{"Ozone":78.0,"Solar.R":null,"Wind":6.9,"Temp":86,"Month":8,"Day":4,"date":1470268800000,"Date":1470268800000},{"Ozone":35.0,"Solar.R":null,"Wind":7.4,"Temp":85,"Month":8,"Day":5,"date":1470355200000,"Date":1470355200000},{"Ozone":66.0,"Solar.R":null,"Wind":4.6,"Temp":87,"Month":8,"Day":6,"date":1470441600000,"Date":1470441600000},{"Ozone":122.0,"Solar.R":255.0,"Wind":4.0,"Temp":89,"Month":8,"Day":7,"date":1470528000000,"Date":1470528000000},{"Ozone":89.0,"Solar.R":229.0,"Wind":10.3,"Temp":90,"Month":8,"Day":8,"date":1470614400000,"Date":1470614400000},{"Ozone":110.0,"Solar.R":207.0,"Wind":8.0,"Temp":90,"Month":8,"Day":9,"date":1470700800000,"Date":1470700800000},{"Ozone":null,"Solar.R":222.0,"Wind":8.6,"Temp":92,"Month":8,"Day":10,"date":1470787200000,"Date":1470787200000},{"Ozone":null,"Solar.R":137.0,"Wind":11.5,"Temp":86,"Month":8,"Day":11,"date":1470873600000,"Date":1470873600000},{"Ozone":44.0,"Solar.R":192.0,"Wind":11.5,"Temp":86,"Month":8,"Day":12,"date":1470960000000,"Date":1470960000000},{"Ozone":28.0,"Solar.R":273.0,"Wind":11.5,"Temp":82,"Month":8,"Day":13,"date":1471046400000,"Date":1471046400000},{"Ozone":65.0,"Solar.R":157.0,"Wind":9.7,"Temp":80,"Month":8,"Day":14,"date":1471132800000,"Date":1471132800000},{"Ozone":null,"Solar.R":64.0,"Wind":11.5,"Temp":79,"Month":8,"Day":15,"date":1471219200000,"Date":1471219200000},{"Ozone":22.0,"Solar.R":71.0,"Wind":10.3,"Temp":77,"Month":8,"Day":16,"date":1471305600000,"Date":1471305600000},{"Ozone":59.0,"Solar.R":51.0,"Wind":6.3,"Temp":79,"Month":8,"Day":17,"date":1471392000000,"Date":1471392000000},{"Ozone":23.0,"Solar.R":115.0,"Wind":7.4,"Temp":76,"Month":8,"Day":18,"date":1471478400000,"Date":1471478400000},{"Ozone":31.0,"Solar.R":244.0,"Wind":10.9,"Temp":78,"Month":8,"Day":19,"date":1471564800000,"Date":1471564800000},{"Ozone":44.0,"Solar.R":190.0,"Wind":10.3,"Temp":78,"Month":8,"Day":20,"date":1471651200000,"Date":1471651200000},{"Ozone":21.0,"Solar.R":259.0,"Wind":15.5,"Temp":77,"Month":8,"Day":21,"date":1471737600000,"Date":1471737600000},{"Ozone":9.0,"Solar.R":36.0,"Wind":14.3,"Temp":72,"Month":8,"Day":22,"date":1471824000000,"Date":1471824000000},{"Ozone":null,"Solar.R":255.0,"Wind":12.6,"Temp":75,"Month":8,"Day":23,"date":1471910400000,"Date":1471910400000},{"Ozone":45.0,"Solar.R":212.0,"Wind":9.7,"Temp":79,"Month":8,"Day":24,"date":1471996800000,"Date":1471996800000},{"Ozone":168.0,"Solar.R":238.0,"Wind":3.4,"Temp":81,"Month":8,"Day":25,"date":1472083200000,"Date":1472083200000},{"Ozone":73.0,"Solar.R":215.0,"Wind":8.0,"Temp":86,"Month":8,"Day":26,"date":1472169600000,"Date":1472169600000},{"Ozone":null,"Solar.R":153.0,"Wind":5.7,"Temp":88,"Month":8,"Day":27,"date":1472256000000,"Date":1472256000000},{"Ozone":76.0,"Solar.R":203.0,"Wind":9.7,"Temp":97,"Month":8,"Day":28,"date":1472342400000,"Date":1472342400000},{"Ozone":118.0,"Solar.R":225.0,"Wind":2.3,"Temp":94,"Month":8,"Day":29,"date":1472428800000,"Date":1472428800000},{"Ozone":84.0,"Solar.R":237.0,"Wind":6.3,"Temp":96,"Month":8,"Day":30,"date":1472515200000,"Date":1472515200000},{"Ozone":85.0,"Solar.R":188.0,"Wind":6.3,"Temp":94,"Month":8,"Day":31,"date":1472601600000,"Date":1472601600000},{"Ozone":96.0,"Solar.R":167.0,"Wind":6.9,"Temp":91,"Month":9,"Day":1,"date":1472688000000,"Date":1472688000000},{"Ozone":78.0,"Solar.R":197.0,"Wind":5.1,"Temp":92,"Month":9,"Day":2,"date":1472774400000,"Date":1472774400000},{"Ozone":73.0,"Solar.R":183.0,"Wind":2.8,"Temp":93,"Month":9,"Day":3,"date":1472860800000,"Date":1472860800000},{"Ozone":91.0,"Solar.R":189.0,"Wind":4.6,"Temp":93,"Month":9,"Day":4,"date":1472947200000,"Date":1472947200000},{"Ozone":47.0,"Solar.R":95.0,"Wind":7.4,"Temp":87,"Month":9,"Day":5,"date":1473033600000,"Date":1473033600000},{"Ozone":32.0,"Solar.R":92.0,"Wind":15.5,"Temp":84,"Month":9,"Day":6,"date":1473120000000,"Date":1473120000000},{"Ozone":20.0,"Solar.R":252.0,"Wind":10.9,"Temp":80,"Month":9,"Day":7,"date":1473206400000,"Date":1473206400000},{"Ozone":23.0,"Solar.R":220.0,"Wind":10.3,"Temp":78,"Month":9,"Day":8,"date":1473292800000,"Date":1473292800000},{"Ozone":21.0,"Solar.R":230.0,"Wind":10.9,"Temp":75,"Month":9,"Day":9,"date":1473379200000,"Date":1473379200000},{"Ozone":24.0,"Solar.R":259.0,"Wind":9.7,"Temp":73,"Month":9,"Day":10,"date":1473465600000,"Date":1473465600000},{"Ozone":44.0,"Solar.R":236.0,"Wind":14.9,"Temp":81,"Month":9,"Day":11,"date":1473552000000,"Date":1473552000000},{"Ozone":21.0,"Solar.R":259.0,"Wind":15.5,"Temp":76,"Month":9,"Day":12,"date":1473638400000,"Date":1473638400000},{"Ozone":28.0,"Solar.R":238.0,"Wind":6.3,"Temp":77,"Month":9,"Day":13,"date":1473724800000,"Date":1473724800000},{"Ozone":9.0,"Solar.R":24.0,"Wind":10.9,"Temp":71,"Month":9,"Day":14,"date":1473811200000,"Date":1473811200000},{"Ozone":13.0,"Solar.R":112.0,"Wind":11.5,"Temp":71,"Month":9,"Day":15,"date":1473897600000,"Date":1473897600000},{"Ozone":46.0,"Solar.R":237.0,"Wind":6.9,"Temp":78,"Month":9,"Day":16,"date":1473984000000,"Date":1473984000000},{"Ozone":18.0,"Solar.R":224.0,"Wind":13.8,"Temp":67,"Month":9,"Day":17,"date":1474070400000,"Date":1474070400000},{"Ozone":13.0,"Solar.R":27.0,"Wind":10.3,"Temp":76,"Month":9,"Day":18,"date":1474156800000,"Date":1474156800000},{"Ozone":24.0,"Solar.R":238.0,"Wind":10.3,"Temp":68,"Month":9,"Day":19,"date":1474243200000,"Date":1474243200000},{"Ozone":16.0,"Solar.R":201.0,"Wind":8.0,"Temp":82,"Month":9,"Day":20,"date":1474329600000,"Date":1474329600000},{"Ozone":13.0,"Solar.R":238.0,"Wind":12.6,"Temp":64,"Month":9,"Day":21,"date":1474416000000,"Date":1474416000000},{"Ozone":23.0,"Solar.R":14.0,"Wind":9.2,"Temp":71,"Month":9,"Day":22,"date":1474502400000,"Date":1474502400000},{"Ozone":36.0,"Solar.R":139.0,"Wind":10.3,"Temp":81,"Month":9,"Day":23,"date":1474588800000,"Date":1474588800000},{"Ozone":7.0,"Solar.R":49.0,"Wind":10.3,"Temp":69,"Month":9,"Day":24,"date":1474675200000,"Date":1474675200000},{"Ozone":14.0,"Solar.R":20.0,"Wind":16.6,"Temp":63,"Month":9,"Day":25,"date":1474761600000,"Date":1474761600000},{"Ozone":30.0,"Solar.R":193.0,"Wind":6.9,"Temp":70,"Month":9,"Day":26,"date":1474848000000,"Date":1474848000000},{"Ozone":null,"Solar.R":145.0,"Wind":13.2,"Temp":77,"Month":9,"Day":27,"date":1474934400000,"Date":1474934400000},{"Ozone":14.0,"Solar.R":191.0,"Wind":14.3,"Temp":75,"Month":9,"Day":28,"date":1475020800000,"Date":1475020800000},{"Ozone":18.0,"Solar.R":131.0,"Wind":8.0,"Temp":76,"Month":9,"Day":29,"date":1475107200000,"Date":1475107200000},{"Ozone":20.0,"Solar.R":223.0,"Wind":11.5,"Temp":68,"Month":9,"Day":30,"date":1475193600000,"Date":1475193600000}];
+        var cf = crossfilter(crossfilterData);
+        var all = cf.groupAll();
+        element.append('<div id="dc-5db2753d-bad1-4e9d-b684-bd5d83ffa41b-count"><strong class="filter-count">?</strong> selected ' +
+                       'out of <strong class="total-count">?</strong> records</div>' +
+                       '<div style="clear: both;"></div>');
+        var count = dc.dataCount("#dc-5db2753d-bad1-4e9d-b684-bd5d83ffa41b-count");
+        count.dimension(cf).group(all);
+        var prop = "Date";
+
+        var propId = prop.replace(".", "_") + "_" + "CumulativeSum";
+        var chartId = "dc-5db2753d-bad1-4e9d-b684-bd5d83ffa41b-chart-" + propId;
+        element.append('<div style="float: left;" id="' + chartId + '"><strong>' + prop + '</strong>' +
+                       '<div style="clear: both;"></div></div>');
+        var dim = cf.dimension(pluck(prop));
+        var _group = dim.group().reduceSum(function(d) {return +d["Ozone"];}); 
+var group = { 
+    all:function () { 
+     var cumulate = 0; 
+     var g = []; 
+     _group.all().forEach(function(d,i) { 
+       cumulate += d.value; 
+       g.push({key:d.key,value:cumulate}) 
+     }); 
+     return g; 
+    } 
+  }; 
+
+        
+        var min = dim.bottom(1)[0][prop];
+        var max = dim.top(1)[0][prop] + 1;
+        var chart = dc.barChart("#" + chartId);
+        chart.dimension(dim).group(group)
+            .x(d3.time.scale().domain([Date(min), Date(max)]))
+            .elasticY(true)
+            .elasticX(true)
+            .width(400).height(200).valueAccessor(function (p) {return p.value;});;
+        
+
+        var prop1 = "Date";
+        var prop2 = "Ozone";
+        var prop3 = "Wind";
+        var propId = prop1.replace(".", "_")+"___"+prop2.replace(".", "_")+"___"+prop3.replace(".", "_")+  "_" +"Count";
+        var chartId = "dc-5db2753d-bad1-4e9d-b684-bd5d83ffa41b-chart-" + propId;
+        var catColors = d3.scale.ordinal()
+                  .domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+                  .range(["#ff2600", "#ffdd00", "#9dff00", "#00d4ff", "#1500ff", "#6a00ff", "#e900ff", "#000000", "#770000", "#ff7700"]);
+        element.append('<div style="float: left;" id="' + chartId + '"><strong>' +propId+ '</strong>' +
+                       '<div style="clear: both;"></div></div>');
+        var dim = cf.dimension(pluck2(prop1, prop2, prop3));
+        var group = dim.group().reduceCount()
+        var min = dim.bottom(1)[0][prop1];
+        var max = dim.top(1)[0][prop1] + 1;
+        var chart = dc.scatterPlot("#" + chartId);
+        chart.dimension(dim).group(group)
+            .x(d3.time.scale().domain([Date(min), Date(max)]))
+            .elasticY(true)
+            .elasticX(true)
+            .margins({top: 20, right: 40, bottom: 20, left: 40})
+            .width(400).height(200)
+  .existenceAccessor(function(d) {
+    return d.value > 0;
+  })
+  .colorAccessor(function(d) {
+    return d.key[2];
+  })
+          .colors(catColors)
+          .filterHandler(function(dim, filters) {
+                if(!filters || !filters.length)
+                    dim.filter(null);
+                else {
+                    dim.filterFunction(function(d) {
+                        return filters[0].isFiltered([d[0],d[1]]);
+                      })
+                }
+          })
+        
+        dc.renderAll();
+        dc.redrawAll();
+    });</script>
+</html>

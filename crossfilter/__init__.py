@@ -282,10 +282,3 @@ class PieChart(ProperyChart):
             .replace('{width}', str(self.width)).replace('{height}', str(self.height))\
             .replace('{reducer}', self.reducerjs).replace('{valAcc}', self.value_accessorjs)
 
-# TODO:
-#
-# - support multiple types of graphs
-# - add data table
-# - make graphs configurable
-# - handle text columns
-# - "reset filters" link
